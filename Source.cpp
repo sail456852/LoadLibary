@@ -7,8 +7,8 @@ typedef int(__stdcall *p_myfunc)();  //function pointer type for the function to
 
 int main()
 {
-	HINSTANCE hGetProcIDDLL = LoadLibrary(TEXT("C:\\Users\\ff\\Documents\\Visual Studio 2015\\Projects\\test\\x64\\Debug\\dll.dll"));
-
+	HINSTANCE hGetProcIDDLL = LoadLibrary(TEXT("C:\\Users\\ff\\Documents\\Visual Studio 2015\\Projects\\test\\x64\\Debug\\dll.dll"));//path to the dll 
+//using the LoadLibrary API you don't need to mess around the build options & including linking path nor header files , that's a lot easier .
 	if (!hGetProcIDDLL) {   //check if the loadlibrary succeeded ?
 		std::cout << "could not load the dynamic library" << std::endl;
 		return EXIT_FAILURE;
