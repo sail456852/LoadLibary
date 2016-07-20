@@ -14,16 +14,16 @@ int main()
 		return EXIT_FAILURE;
 	}
 
-
-	p_myfunc myfunction = (p_myfunc)GetProcAddress(hGetProcIDDLL, "myfunction");  
+         //myfunction1 can be any name you want , but the "myfunction" has to be the name of the function you wish to call inside the dll 
+	p_myfunc myfunction1 = (p_myfunc)GetProcAddress(hGetProcIDDLL, "myfunction");  
         //see if this API can find the target function inside the dll by using the suitable function pointer we just created . 
-	if (!myfunction) //check if this function pointer contains something useful 
+	if (!myfunction1) //check if this function pointer contains something useful 
 	{
 		std::cout << "could not locate the function" << std::endl;
 		return EXIT_FAILURE;
 	}
 
-	std::cout << "funci() returned " << myfunction() << std::endl;
+	std::cout << "funci() returned " << myfunction1() << std::endl;  //remember here you call using the new function pointer not the original function name 
 
 	return EXIT_SUCCESS;
 }
