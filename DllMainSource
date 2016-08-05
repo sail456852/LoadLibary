@@ -4,6 +4,7 @@
 INT APIENTRY DllMain(HMODULE hDLL, DWORD Reason, LPVOID Reserved) {
 	/* open file */
 	FILE *file;
+	//This folder path really matters !
 	fopen_s( &file, "C:\\test\\temp.txt", "a+");  //Please note here ,some Windows forbid creating on Disk root directly without administrator privilege by default 
 	//So the safe solution to do this , make sure this won't be the handicap of creating a file , is to create a folder first ,then put your file in .
 	
@@ -29,3 +30,6 @@ INT APIENTRY DllMain(HMODULE hDLL, DWORD Reason, LPVOID Reserved) {
 	return TRUE;
 }
 //This turned out to be executable in Windows 10  using default user account 
+//PS: PCH aka pre compiled header .will not be created if you choose to empty the project when creating 
+//But you can manually add PCH by adding the corresponding files to the folders ,(stdafx.h stdafx.cpp targetver.h) 
+
