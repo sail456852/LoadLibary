@@ -14,7 +14,15 @@ int main()
   // we didn't do anything function call or export function inside the corresponding dll file , but when we successfully load the dll , the DllMain was successfully executed!
   //if you like you can add some error handling , but here ,for simplicity purpose , we just call the LoadLibrary function , and nothing else 
   //When using the LoadLibrary function , we don't need to set the including header path . dynamic library linking file .a or .lib for linking .dll file to an .exe 
-  //we don't to specify the .dll file file , since loadlibrary almost will do everything for us 
+  //we don't need to specify the .dll file file , since loadlibrary almost will do everything for us 
 
 }
+
+//Visual Studio 2015 tips 
+//When you have included the PCH files into your project root folder , still get error prompts that "can't find the "stdafx.h" 
+// Try to reload your solution , close and reopen , sometimes this works for me 
+// Visual Studio Solution Explorer Tab Tips 
+//Toggle the Show all files button on this table , you will find your source code sorted in Header / Sources folders form or shows all the file 
+//directly including the project or solution settings files if this button is in on status . 
+
 
