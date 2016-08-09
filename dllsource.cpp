@@ -14,3 +14,9 @@ extern "C" int __declspec(dllexport) __stdcall  myfunction()  //without extern "
 //and also there is no need to use the header file ,but you can use it , it doesn't really matter , if you just wanna call a function in that
 //dll , why ? because calling the function in that dll from exe process , is done indirectly ,through function pointer . you can't 
 //call that function directly through the function name , because that name is in another namespace . 
+
+
+//extern "C"  before any exporting function from dll is a must , during my test , I found that if I remove the extern "C" keyword 
+//They both will be compiled successfully , but when executing , the calling process (aka exe which uses the function pointer) will fail 
+// to find the function address in that dll instance , why , maybe because the supposed to be exported function , is not accessible from 
+//another instance aka , the calling process 
