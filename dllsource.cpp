@@ -20,3 +20,8 @@ extern "C" int __declspec(dllexport) __stdcall  myfunction()  //without extern "
 //They both will be compiled successfully , but when executing , the calling process (aka exe which uses the function pointer) will fail 
 // to find the function address in that dll instance , why , maybe because the supposed to be exported function , is not accessible from 
 //another instance aka , the calling process 
+
+
+//I tried with the extern keyword only , omitted "C" , which I supposed to mean this is C++ style extern function , not C style 
+//but why it crashed again , aha ? I don't know ,by far it means you have to prefix extern "C" before any function you wanna 
+//export into another process . 
