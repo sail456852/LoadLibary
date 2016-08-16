@@ -1,0 +1,25 @@
+//There is the header will be included in both projects  
+//The calling project callmain and the dll project DllMain 
+
+#pragma once  // same as the include guard ( make sure the following file only compile once , even being included multi-times 
+   // Or else it may cause errors if you don't have this , and include this header more than one time in the same project 
+
+#if !defined LIBSPY_DLL_H  // This is the include guard , same as the #pragma once preprocesser directives 
+#define LIBSPY_DLL_H   //part of the include guard 
+
+
+#ifdef DLLMAIN_EXPORTS /*Define the Macro aka ( DLLMAIN_EXPORTS) , in this project's properties settings  (this dll header
+ + responding cpp source file ) ,Properties -> Configuration -> Active(Debug) -> C\C++ -> Preprocessor -> Proprocessor definitions
+*/
+#define LIBSPY_API __declspec(dllexport)  //should export the variables in the dll project 
+#else
+#define LIBSPY_API __declspec(dllimport)  //should import the variables in the calling project 
+#endif
+//The internal #ifdef / #endif include guard decides whether the following variabels declaration is imported or exported  
+//depends on the specific project settings .
+
+
+extern LIBSPY_API HWND	g_hPwdEdit;     // These are only declaration of the variables created in dll project 
+extern LIBSPY_API char	g_szPassword[128]; //Specifically in the source file of the dll project 
+
+#endif  //end of the ifndefined LIBSPY_DLL_H , during my test , it has the exactly the same effect the #pragma once directives .
