@@ -1,0 +1,35 @@
+//This is the calling main project's source file , create a process to call the dll project 
+
+
+#include <windows.h>
+#include <stdio.h>     // printf
+#include "..\DllMain\DllHeader.h"  //include the same file created in the dll project ,this time ,it imports variables 
+
+int main()
+{
+
+   //Load your dll into RAM is absolutely neccessary since you have to use its variables 
+	LoadLibraryA("..\\Debug\\DllMain.dll");  //use the ASCII version of Loadlibrary  
+
+	g_szPassword[4] = 'e';   //try to modify an arbitrary element of the array 
+	g_szPassword[2] =  'u' ;
+
+
+	//try to output  the data created and modified in the dll file  ,the ouput should be k
+	printf("%c", g_szPassword[100]);  //print the variable which has been initialised in the dll 
+
+	g_szPassword[100] = 'c';  //modify the data in the shared area  ,the ouput should be c 
+	printf("%c", g_szPassword[100]);
+
+}
+
+//What I learnt from during my trials to make it works  
+//This little works well , I can modify the variable  either in dll or in the calling exe , as expected 
+
+//The following is the mistakes I made ,after reading more material online , I found the saying  
+//You can export function without importing and compiling against .lib file (which is automatically generated with .dll file ) 
+//But as for sharing variables , you must import the declaration (the header file which contains variables declarations )  and 
+//compile against .lib file  . 
+
+//which turned out to succeed 
+
