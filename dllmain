@@ -1,0 +1,22 @@
+
+#include <windows.h>
+#include "DllHeader.h"   //make sure the following variables definition is exportable  
+
+#pragma data_seg (".shared")  //create a specially named data segment in the code segment ,which will instruct how this program runs 
+
+HWND	g_hPwdEdit = 0;                 //the definition of the variable 1 ,and initialisation 
+char	g_szPassword[128] = { '/0' };   //the definition of the variable 2  ,and initialisation 
+
+#pragma data_seg ()  // reset the following code segment to the default value ,aka ".data" segment ,as what we learn in Assembly 
+
+#pragma comment(linker,"/SECTION:.shared,RWS")  //set the attributes of the named data segment to (Read ,Write ,Shared) 
+
+//The DllMain function which is optional , will be called the dll is loaded into RAM 
+BOOL APIENTRY DllMain(HANDLE hModule,
+	DWORD  ul_reason_for_call,
+	LPVOID lpReserved
+)
+{
+	g_szPassword[100] = 'k';    	//Modify a member of char array in the shared area
+	return TRUE;
+}
